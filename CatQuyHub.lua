@@ -1,15 +1,7 @@
 -- config
 
    -- join Team
-local Teams = {"Marines", "Pirates"}      
-for i, v in pairs(Teams) do
-    if _G.JoinTeams == "Marines" then
-        game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("SetTeam", "Marines")
-    elseif _G.JoinTeams == "Pirates" then
-        game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("SetTeam", "Pirates")
-    end            
-    end
-end
+
    -- fix lag
 if _G.Fixlag then
     local decalsyeeted = true
@@ -55,7 +47,57 @@ else
     print('_G.Fixlag = false')    
 end
 
+-- close UI
+-- Gui to Lua
+-- Version: 3.2
+
+-- Instances:
+
+local ScreenGui = Instance.new("ScreenGui")
+local ImageLabel = Instance.new("ImageLabel")
+local TextButton = Instance.new("TextButton")
+local UICorner = Instance.new("UICorner")
+local UICorner_2 = Instance.new("UICorner")
+
+--Properties:
+
+ScreenGui.Parent = game.CoreGui
+ScreenGui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+
+ImageLabel.Parent = ScreenGui
+ImageLabel.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+ImageLabel.BorderColor3 = Color3.fromRGB(0, 0, 0)
+ImageLabel.BorderSizePixel = 0
+ImageLabel.Position = UDim2.new(0.475783467, 0, 0.127906978, 0)
+ImageLabel.Size = UDim2.new(0, 60, 0, 62)
+ImageLabel.Image = "http://www.roblox.com/asset/?id=17425369757"
+ImageLabel.Draggable = true
+ImageLabel.Visible = true
+ImageLabel.Active = true
+
+TextButton.Parent = ImageLabel
+TextButton.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+TextButton.BackgroundTransparency = 1.000
+TextButton.BorderColor3 = Color3.fromRGB(0, 0, 0)
+TextButton.BorderSizePixel = 0
+TextButton.Position = UDim2.new(0.0895522386, 0, 0.0923076943, 0)
+TextButton.Size = UDim2.new(0, 54, 0, 52)
+TextButton.Font = Enum.Font.SourceSansBold
+TextButton.Text = "Cat | Quy"
+TextButton.TextColor3 = Color3.fromRGB(0, 0, 0)
+TextButton.TextSize = 15.000
+TextButton.MouseButton1Down:Connect(function()
+	game:GetService("VirtualInputManager"):SendKeyEvent(true,Enum.KeyCode.End,false,game)
+end)
+	
+UICorner.CornerRadius = UDim.new(1, 0)
+UICorner.Parent = TextButton
+
+UICorner_2.CornerRadius = UDim.new(1, 0)
+UICorner_2.Parent = ImageLabel
+
 -- vietsub version
+wait(2)
 
 local Fluent = loadstring(game:HttpGet("https://github.com/dawid-scripts/Fluent/releases/latest/download/main.lua"))()
 local SaveManager = loadstring(game:HttpGet(
@@ -7951,3 +7993,24 @@ SliderPosZ:OnChanged(function(Value)
     posZ = Value
 end)
 SliderPosZ:SetValue(0)
+
+local Input = Hop:AddInput("Input", {
+    Title = "Join JobId",
+    Description = "jobId",
+    Default = "Default",
+    Placeholder = "pls input JobId",
+    Numeric = false, -- Only allows numbers
+    Finished = false, -- Only calls callback when you press enter
+})
+
+Input:OnChanged(function()
+    print("Input", Input.Value)
+    local a = '"' .. Input.Value .. '"'
+    if First_Sea then
+        game:GetService("TeleportService"):TeleportToPlaceInstance(2753915549, a, game:GetService("Players").LocalPlayer)
+    elseif Second_Sea then
+        game:GetService("TeleportService"):TeleportToPlaceInstance(4442272183, a, game:GetService("Players").LocalPlayer)
+    elseif Third_Sea then     
+        game:GetService("TeleportService"):TeleportToPlaceInstance(7449423635, a, game:GetService("Players").LocalPlayer)           
+    end
+end)
